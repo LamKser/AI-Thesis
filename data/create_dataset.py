@@ -1,23 +1,10 @@
 import os
 from os.path import join, splitext
-from random import randint
+import random
 
 import cv2
 
 
-def get_pair_images(lr_directory, hr_directory, scale=4, step=96):
-    # lr_files = sorted(os.listdir(lr_directory))
-    # hr_files = sorted(os.listdir(hr_directory))
-
-    # for lr, hr in zip(lr_files, hr_files):
-    #     # Read image BGR
-    #     lr_img = cv2.imread(join(lr_directory, lr))
-    #     hr_img = cv2.imread(join(hr_directory, hr))
-
-    #     # Get image height, width
-    #     h_lr, w_lr = lr_img.shape[:2]
-    #     h_hr, w_hr = hr_img.shape[:2]
-    pass
 
 
 def ger_hr_lr_patches(directory, 
@@ -43,6 +30,7 @@ def ger_hr_lr_patches(directory,
         # import matplotlib.pyplot as plt
         # plt.imshow(img)
         # plt.show()
+        # break
         for i, x in enumerate(range(xmin, xmax - size, step)):
             for j, y in enumerate(range(ymin, ymax - size, step)):
                 hr_img = img[y : y + size, x : x + size]
@@ -72,4 +60,4 @@ if __name__ == '__main__':
                         help='lr_dir')
     args = parser.parse_args()
 
-    ger_hr_lr_patches(args.directory, args.border_scale, args.scale, args.step, args.size, args.hr_directory, args.lr_directory)
+    ger_hr_lr_patches(args.dir, args.border_scale, args.scale, args.step, args.size, args.hr_dir, args.lr_dir)
